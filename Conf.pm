@@ -2,9 +2,11 @@ package XML::Conf;
 
 use XML::Simple;
 use strict;
-use vars qw($VERSION);
+use vars qw($VERSION @ISA);
+use Tie::DeepTied;
+use Tie::Hash;
 
-$VERSION = 0.01;
+$VERSION = 0.02;
 
 sub new {
     my ($class, $filename, %opts) = @_;
@@ -21,36 +23,43 @@ sub new {
         close(I);
         $fn = $filename;
     }
-    my $hash = XML::Simple::XMLin($xml);
+    my $hash = XML::Simple::XMLin($xml) || return undef;
     my $case = $opts{'case'};
-    my $sub = !$case ? sub {$_;} : eval "sub { $case(\$_); }";
-    my $self = {'data' => $hash, 'case' => $sub, 'fn' => $fn};
+    $hash = &trans($hash, eval "sub { $case(\$_);} ") if ($case);
+    my $self = {'data' => $hash, 'case' => $case, 'fn' => $fn};
     my $sig = $opts{'sig'};
     if ($sig) {
         $SIG{$sig} = sub { $self->ReadConfig; };
     }
+    bless $self, $class;
+}
+
+sub trans {
+    my ($tree, $case) = @_;
+    return $tree unless (UNIVERSAL::isa($tree, 'HASH'));
+    my %hash;
+    foreach (keys %$tree) {
+        $hash{&$case($_)} = &trans($tree->{$_}, $case);
+    }
+    \%hash;
 }
 
 sub val {
     my $self = shift;
     my $data = $self->{'data'};
-    my $case = $self->{'case'};
+
     foreach (@_) {
-        my $this = &$case($_);
-        $data = $data->{$this};
+        $data = $data->{$_};
     }
-    $data;
+    wantarray ? split("\n", $data) : $data;
 }
 
 
 sub setval {
     my $self = shift;
-    my $data = \{$self->{'data'}};
-    my $case = $self->{'case'};
+    my $data = \$self->{'data'};
     while (@_ > 1) {
-        my $node = shift;
-        $node = &$case($node);
-        $data = \{${$data}->{$node}};
+        $data = \($$data->{shift()});
     }
     $$data = shift;
 }
@@ -63,15 +72,10 @@ sub newval {
 sub delval {
     my $self = shift;
     my $data = $self->{'data'};
-    my $case = $self->{'case'};
     while (@_ > 1) {
-        my $node = shift;
-        $node = &$case($node);
-        $data = $data->{$node};
+        $data = $data->{shift()};
     }
-    my $node = shift;
-    $node = &$case($node);
-    delete $data->{$node};
+    delete $data->{shift()};
 }
 
 sub ReadConfig {
@@ -109,3 +113,55 @@ sub WriteConfig {
     print O $xml;
     close(O);
 }
+
+sub TIEHASH {
+    my $class = shift;
+    $class->new(@_);
+}
+
+sub FETCH {
+    my ($self, $key) = @_;
+    my $val = $self->val($key);
+    if (UNIVERSAL::isa($val, 'HASH') && !tied(%$val)) {
+        my %h = %$val;
+        tie %$val, 'Tie::StdHash', $self, $key;
+        %$val = %h;
+        tie %$val, 'Tie::DeepTied', $self, $key;
+    }
+    $val;
+}
+
+sub STORE {
+    my ($self, $key, $val) = @_;
+    $self->setval($key, $val);
+}
+
+sub DELETE {
+    my ($self, $key) = @_;
+    $self->delval($key);
+}
+
+sub CLEAR {
+    my $self = shift;
+    $self->{'data'} = {};
+}
+
+sub EXISTS {
+    my ($self, $key) = @_;
+    exists $self->{'data'}->{$key};
+}
+
+sub FIRSTKEY {
+    my $self = shift;
+    keys %{$self->{'data'}};
+    each %{$self->{'data'}};
+}
+
+sub NEXTKEY {
+    my $self = shift;
+    each %{$self->{'data'}};
+}
+
+1;
+
+__END__
