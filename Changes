@@ -1,5 +1,43 @@
 Revision history for Perl extension XML::Conf.
 
+$Id: Changes,v 1.8 2003/12/09 19:19:40 jonasbn Exp $
+
 0.01  Mon Jul 10 20:51:57 2000
 	- original version; created by h2xs 1.19
 
+0.02  ?
+	- Nothing known about this release (jonasbn)
+
+0.03  Sat Jan 18 18:48:43 CET 2003
+	- Development taken over by jonasbn
+
+	- Everything put under revision control
+
+	- Added README file
+	- Added TODO file
+	- Added INSTALL file
+	- Added AUTHOR file
+	- Added LICENSE file
+	- Added CVS tags to everything
+	- Restructured distribution structure
+	- Added t dir
+	- Added lib dir
+	- Added lib/XML dir
+	- Rewrote test.pl
+	- Added use of Test::More
+	- Added t/basic.t
+	- Added prototypes to all methods
+	- Added NAME, DESCRIPTION, TODO, AUTHOR and COPYRIGHT paragraphs
+	- Privatized the subs: val, setval, newval, delval and trans
+	- Added t/private.t
+	- Added t/populated.xml
+	- Documented _val, _setval, _newval, _delval and _trans
+	- Documented FIRSTKEY, NEXTKEY, EXISTS, CLEAR, STORE and TIEHASH 
+	- Documented WriteConfig, ReadConfig and RewriteConfig
+	- Added SYNOPSIS with examples from the tests (basic.t)
+	- Added t/advanced.t
+	- Removed test.pl
+	- Added use of Carp (croak instead of die)
+	- Added Tie::Tools to the Makefile.PL, Tie::DeepTied is a part of this 
+      module
+    - Added a dummy sub for case

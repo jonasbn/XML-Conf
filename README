@@ -1,0 +1,11 @@
+README of XML::Conf
+
+This is originally the work of Ariel Brosh, a member of Israel.pm and author of several contributions to CPAN. He has unfortunately passed away and have left behind several Perl modules where this is just one of them.
+
+I volunteered to contribute further to the development of the module, but it is still kept under the name of Ariel Brosh.
+
+I have added everything to the Copenhagen Perl Mongers CVS server, check http://cvs.legart.dk/cvsweb.cgi/modules/XML/Conf/
+
+jonasbn, Copenhagen 2003
+
+$Id: README,v 1.2 2003/07/21 14:32:43 jonasbn Exp $

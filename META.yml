@@ -1,0 +1,16 @@
+#XXXXXXX This is a prototype!!!  It will change in the future!!! XXXXX#
+name:         XML-Conf
+version:      0.03
+version_from: lib/XML/Conf.pm
+installdirs:  site
+requires:
+    Data::Dumper:                  0
+    Test::Harness:                 0
+    Test::More:                    0
+    Tie::Hash:                     0
+    XML::Simple:                   1.04
+    Carp:                          0
+    Tie::Tools:                    0
+
+distribution_type: module
+generated_by: ExtUtils::MakeMaker version 6.12

@@ -1,5 +1,16 @@
+BUGS
 Changes
-Conf.pm
-MANIFEST
+INSTALL
+lib/XML/Conf.pm
+LICENSE
 Makefile.PL
-test.pl
+MANIFEST
+META.yml			Module meta-data (added by MakeMaker)
+README
+t/advanced.t
+t/basic.t
+t/myConfig
+t/otherfile.xml
+t/populated.xml
+t/private.t
+TODO
