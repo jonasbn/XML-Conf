@@ -1,6 +1,6 @@
 Revision history for Perl extension XML::Conf.
 
-$Id: Changes,v 1.8 2003/12/09 19:19:40 jonasbn Exp $
+$Id: Changes,v 1.10 2003/12/14 20:44:11 jonasbn Exp $
 
 0.01  Mon Jul 10 20:51:57 2000
 	- original version; created by h2xs 1.19
@@ -41,3 +41,13 @@ $Id: Changes,v 1.8 2003/12/09 19:19:40 jonasbn Exp $
 	- Added Tie::Tools to the Makefile.PL, Tie::DeepTied is a part of this 
       module
     - Added a dummy sub for case
+
+Released Wed Dec 10 00:03:38 CET 2003
+
+0.04 Thu Dec 11 00:03:38 CET 2003
+
+	- Added Tie::DeepTied to Makefile.PL, should address failling test
+	  from CPAN testers
+
+Released Sun Dec 14 21:43:31 CET 2003
+	  

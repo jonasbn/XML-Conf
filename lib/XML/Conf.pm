@@ -1,6 +1,6 @@
 package XML::Conf;
 
-# $Id: Conf.pm,v 1.5 2003/12/09 19:12:28 jonasbn Exp $
+# $Id: Conf.pm,v 1.6 2003/12/14 20:44:11 jonasbn Exp $
 
 use XML::Simple;
 use strict;
@@ -9,7 +9,7 @@ use Tie::DeepTied;
 use Tie::Hash;
 use Carp;
 
-$VERSION = 0.03;
+$VERSION = 0.04;
 
 sub new {
     my ($class, $filename, %opts) = @_;
