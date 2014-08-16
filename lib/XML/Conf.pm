@@ -4,12 +4,13 @@ package XML::Conf;
 
 use XML::Simple;
 use strict;
+use warnings;
 use vars qw($VERSION @ISA);
 use Tie::DeepTied;
 use Tie::Hash;
 use Carp;
 
-$VERSION = 0.04;
+$VERSION = 0.05;
 
 sub new {
     my ($class, $filename, %opts) = @_;

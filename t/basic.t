@@ -3,7 +3,6 @@
 # $Id: basic.t,v 1.3 2003/02/03 15:36:27 jonasbn Exp $
 
 use strict;
-use lib qw(lib ../lib);
 use Test::More tests => 13;
 use Data::Dumper;
 

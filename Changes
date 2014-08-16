@@ -1,12 +1,22 @@
 Revision history for Perl extension XML::Conf.
 
-$Id: Changes,v 1.10 2003/12/14 20:44:11 jonasbn Exp $
+0.05 2014-08-16
 
-0.01  Mon Jul 10 20:51:57 2000
-	- original version; created by h2xs 1.19
+- Ported build system to Dist::Zilla
 
-0.02  ?
-	- Nothing known about this release (jonasbn)
+- Addressed issues with failing tests under this build system
+  the use of 'use lib', is b0rken, see my Perl::Critic policy on the
+  matter
+
+- Added use of warnings
+
+
+0.04 Thu Dec 11 00:03:38 CET 2003
+
+	- Added Tie::DeepTied to Makefile.PL, should address failling test
+	  from CPAN testers
+
+Released Sun Dec 14 21:43:31 CET 2003
 
 0.03  Sat Jan 18 18:48:43 CET 2003
 	- Development taken over by jonasbn
@@ -44,10 +54,8 @@ $Id: Changes,v 1.10 2003/12/14 20:44:11 jonasbn Exp $
 
 Released Wed Dec 10 00:03:38 CET 2003
 
-0.04 Thu Dec 11 00:03:38 CET 2003
+0.02  ?
+	- Nothing known about this release (jonasbn)
 
-	- Added Tie::DeepTied to Makefile.PL, should address failling test
-	  from CPAN testers
-
-Released Sun Dec 14 21:43:31 CET 2003
-	  
+0.01  Mon Jul 10 20:51:57 2000
+	- original version; created by h2xs 1.19

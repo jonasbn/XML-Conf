@@ -3,7 +3,6 @@
 # $Id: advanced.t,v 1.3 2003/12/09 19:22:10 jonasbn Exp $
 
 use strict;
-use lib qw(lib ../lib);
 use Test::More tests => 7;
 use Data::Dumper;
 
