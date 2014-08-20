@@ -1,5 +1,26 @@
 Revision history for Perl extension XML::Conf.
 
+0.06 2014-08-20, bug fix release, update not required
+
+- Addressed issue with XML::Simple (dependency)
+  http://www.cpantesters.org/cpan/report/4dba5ca2-e3fc-11df-b117-fd5467a42f83
+
+  The report had the following error:
+
+    XMLin() requires either XML::SAX or XML::Parser at lib/XML/Conf.pm line 30
+
+  The report was based on use of XML::Simple 2.18. I found this is the Changes file for XML::Simple:
+
+    2.19_02   2012-06-19 20:33:53 Pacific/Auckland
+      - Reinstate XML::SAX::Expat dependency
+
+  I have not been able to replicate the error using XML::Simple 2.20 and
+  I do not want to dig into XML::Simple history so I am specifying a dependency to 2.20 (from 1.04)
+
+
+Closing the issue
+
+
 0.05 2014-08-16
 
 - Ported build system to Dist::Zilla
