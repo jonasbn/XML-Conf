@@ -2,7 +2,8 @@ Revision history for Perl extension XML::Conf.
 
 0.06 2014-08-20, bug fix release, update not required
 
-- Addressed issue with XML::Simple (dependency)
+- Addressed issue with XML::Simple (dependency) [RT:62836]
+
   http://www.cpantesters.org/cpan/report/4dba5ca2-e3fc-11df-b117-fd5467a42f83
 
   The report had the following error:
@@ -16,7 +17,6 @@ Revision history for Perl extension XML::Conf.
 
   I have not been able to replicate the error using XML::Simple 2.20 and
   I do not want to dig into XML::Simple history so I am specifying a dependency to 2.20 (from 1.04)
-
 
 Closing the issue
 
