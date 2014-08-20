@@ -10,7 +10,7 @@ use Tie::DeepTied;
 use Tie::Hash;
 use Carp;
 
-$VERSION = 0.05;
+$VERSION = 0.06;
 
 sub new {
     my ($class, $filename, %opts) = @_;
