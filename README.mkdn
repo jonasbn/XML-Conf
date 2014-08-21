@@ -1,4 +1,6 @@
 [![CPAN version](https://badge.fury.io/pl/XML-Conf.svg)](http://badge.fury.io/pl/XML-Conf)
+[![Build Status](https://travis-ci.org/jonasbn/XML-Conf.svg?branch=master)](https://travis-ci.org/jonasbn/XML-Conf)
+[![Coverage Status](https://coveralls.io/repos/jonasbn/XML-Conf/badge.png)](https://coveralls.io/r/jonasbn/XML-Conf)
 
 XML::Conf - configuration module based on XML
 
