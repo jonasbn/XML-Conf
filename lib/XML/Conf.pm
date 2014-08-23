@@ -1,7 +1,5 @@
 package XML::Conf;
 
-# $Id: Conf.pm,v 1.6 2003/12/14 20:44:11 jonasbn Exp $
-
 use XML::Simple;
 use strict;
 use warnings;
