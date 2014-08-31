@@ -32,15 +32,16 @@ Closing the issue
 - Added use of warnings
 
 
-0.04 Thu Dec 11 00:03:38 CET 2003
+0.04 2003-12-11
 
 	- Added Tie::DeepTied to Makefile.PL, should address failling test
 	  from CPAN testers
 
-Released Sun Dec 14 21:43:31 CET 2003
 
-0.03  Sat Jan 18 18:48:43 CET 2003
+0.03  2003-01-18
+
 	- Development taken over by jonasbn
+      Nothing known about release 0.02
 
 	- Everything put under revision control
 
@@ -73,10 +74,6 @@ Released Sun Dec 14 21:43:31 CET 2003
       module
     - Added a dummy sub for case
 
-Released Wed Dec 10 00:03:38 CET 2003
-
-0.02  ?
-	- Nothing known about this release (jonasbn)
 
 0.01  Mon Jul 10 20:51:57 2000
 	- original version; created by h2xs 1.19
