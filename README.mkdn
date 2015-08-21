@@ -2,24 +2,201 @@
 [![Build Status](https://travis-ci.org/jonasbn/XML-Conf.svg?branch=master)](https://travis-ci.org/jonasbn/XML-Conf)
 [![Coverage Status](https://coveralls.io/repos/jonasbn/XML-Conf/badge.png)](https://coveralls.io/r/jonasbn/XML-Conf)
 
-XML::Conf - configuration module based on XML
+# NAME
 
-MOTIVATION
+XML::Conf - a simple configuration module based on XML
 
-This is originally the work of Ariel Brosh, a member of Israel.pm and author of several contributions to CPAN. He has unfortunately passed away and have left behind several Perl modules where this is just one of them.
+# SYNOPSIS
 
-I volunteered to contribute further to the development of the module, but it is still kept under the name of Ariel Brosh.
+Here follows some examples as the tests are done.
 
-jonasbn, Copenhagen 2003
+use XML::Conf;
 
-AUTHORS
+my $c = XML::Conf->new($filename);
 
-- Jonas B. Nielsen (current maintainer)
+$w = $c->FIRSTKEY();
 
-- Ariel Brosh, original author
+$v = $c->NEXTKEY();
 
-COPYRIGHT AND LICENSE
+$c->EXISTS($v);
 
-Ariel Brosh
+$c->DELETE($v);
+
+$c->CLEAR();
+
+# DESCRIPTION
+
+This is the description of the class, currently it only containg only
+the descriptions of the private and public methods and attributes.
+
+## Attributes
+
+- data
+
+    The attribute holding the reference to the actual configuration
+    structure, the top-node so to speak.
+
+- case
+
+    This is the attribute for holding the case parameter (see named
+    parameteres to the constructor below).
+
+- fn (filename), the attribute holding the filename of current
+configuration, no matter whether it exists or not.
+
+## Public Methods
+
+- new
+
+    This is the constructor of the class. It takes a **filename** as a
+    parameter, and additionally some named parameters:
+
+    - case
+
+        The argument given to case is used during the construction of the
+        objects by the **\_trans** function, to traverse and utilize on all
+        elements encountered during the traversal through the configuration
+        tree.
+
+    - sig
+
+        This is a signal flag indicating whether a configuration should be read
+        from file (See **ReadConfig**). If set a newly blessed object will be
+        initialized by **ReadConfig**.
+
+        ...missing docs...
+
+Apart from the public interface of the **new** method, the method is
+also used internally from some of the other methods, the methods usings
+the constructor are described below.
+
+- Sections
+
+    This method calls **Parameters** and returns all the sections in the object.
+
+    ...missing docs...
+
+- Parameters
+
+    ...missing docs...
+
+- ReadConfig
+
+    This method reads a file pointed to by the **fn** attribute and returns
+    a true value upon successful read and initialization (which overides
+    self) by using the **new** method (constructor).
+
+- WriteConfig
+
+    The WriteConfig method can be used to write the contents of the
+    configuration object to a file. This method takes a filename as
+    argument. The **WriteConfig** method is used internally by the
+    **RewriteConfig** method.
+
+- RewriteConfig
+
+    The method is used to overwrite a serialized configuration object to a
+    file. It writes to the contents of the **fn** attribute and used the
+    **WriteConfig** method (see above).
+
+- TIEHASH
+
+    The **TIEHASH** is just a wrapper for the **new** method (the constructor).
+
+- FETCH
+
+    ...missing docs...
+
+- STORE
+
+    The **STORE** method takes 2 parameters, a key and a value. The value is
+    stored under the key. The method uses the private method **\_setval**.
+
+- DELETE
+
+    Deletes/removes the element specified as the argument, uses the private
+    method **\_delval**.
+
+- CLEAR
+
+    Empties/flushes the configuration object. Works with values underneath
+    the **data** attribute.
+
+- EXISTS
+
+    Returns true if the element specified as a the parameter exists, else
+    it returns false. Works with values underneath the **data** attribute.
+
+- FIRSTKEY
+
+    Retrieves the first element in the configuration object (tied hash).
+    Works with values underneath the **data** attribute.
+
+- NEXTKEY
+
+    Retrieves the next element in the configuration object (tied hash), the
+    first element if none have been retrieved. Works with values underneath
+    the **data** attribute.
+
+## Private Methods
+
+- \_val
+
+    Returns the complete config object as a hashref in scalar context.
+
+    In list context the method returns a hash.
+
+- \_setval
+
+    Sets a value in the structure. The method can be given a list of
+    parameters, the longer the list, the deeper the structure. The
+    **\_setval** method works from the **data** attribute and below.
+
+- \_newval
+
+    This method is just an 'alias' of the **\_setval** method. It is
+    currently now used anywhere in the class.
+
+- \_delval
+
+    This method does the opposite of **\_setval**, meaning given a list it
+    can remove values at all levels of the configuration tree. The
+    **\_setval** method works from the **data** attribute and below.
+
+## Private Functions
+
+This paragraf contains functions which are not related to the class in
+public use, these functions are used during construction of the object.
+
+- \_trans
+
+    The **\_trans** function takes the **case** argument given to the constructor
+    and traverses the complete configuration tree and used the sub provided
+    as argument on the elements encountered.
+
+# TODO
+
+- Write documentation, figure out general uses etc.
+- \_val (list and scalar context), examples and clarification.
+- sig parameter to **new**, examples and clarification.
+- case parameter to **new**, examples and clarification.
+- Make regression tests to find minimum versions of Tie::Hash and
+Tie::DeepTied
+
+# COPYRIGHT
 
 XML::Conf is free software and is released under the Artistic License.
+See <http://www.perl.com/language/misc/Artistic.html> for details.
+
+# AUTHOR
+
+This is originally the work of Ariel Brosh, a member of Israel.pm and
+author of several contributions to CPAN. He has unfortunately passed
+away and have left behind several Perl modules where this is just one
+of them.
+
+I volunteered to contribute further to the development of the module,
+but it is still kept under the name of Ariel Brosh - the original
+author.
+
+Jonas B. Nielsen <jonasbn@cpan.org>
