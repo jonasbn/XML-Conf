@@ -8,7 +8,7 @@ use Tie::DeepTied;
 use Tie::Hash;
 use Carp;
 
-$VERSION = 0.06;
+$VERSION = 0.07;
 
 sub new {
     my ($class, $filename, %opts) = @_;
@@ -177,6 +177,16 @@ sub NEXTKEY {
 1;
 
 __END__
+
+=pod
+
+=begin markdown
+
+[![CPAN version](https://badge.fury.io/pl/XML-Conf.svg)](http://badge.fury.io/pl/XML-Conf)
+[![Build Status](https://travis-ci.org/jonasbn/XML-Conf.svg?branch=master)](https://travis-ci.org/jonasbn/XML-Conf)
+[![Coverage Status](https://coveralls.io/repos/jonasbn/XML-Conf/badge.png)](https://coveralls.io/r/jonasbn/XML-Conf)
+
+=end markdown
 
 =head1 NAME
 
